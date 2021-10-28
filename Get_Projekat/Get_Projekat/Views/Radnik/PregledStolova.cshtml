@@ -1,0 +1,53 @@
+﻿@model IEnumerable<Get_Projekat.Models.Sto>
+
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    Layout = "_ClientLayout";
+}
+
+
+
+<div class="container" style="background:rgba(0,0,0,0.9);border-radius:10px">
+
+    <div class="row">
+    <a class="btn btn-info" method="get" type="submit"  asp-controller="Radnik" asp-action="DodajSto">Dodaj Novi+</a>
+</div>
+
+    <table class="table text-white">
+          <thead>
+
+            <tr>
+              <th scope="col">id</th>
+              <th scope="col">ime stola</th>
+              <th scope="col">opis</th>
+              <th scope="col">cena</th>
+            </tr>
+          </thead>
+
+      <tbody>
+
+          @if(Model.Any()){
+              foreach (var item in Model)
+              {
+                   <tr>
+                      <td>@item.StoId</td>
+                      <td>@item.Name</td>
+                      <td>@item.Description</td>
+                      <td>@item.cena</td>
+                      <td><a class="btn btn-danger" type="submit"  asp-controller="Radnik" asp-action="BrisiSto" asp-route-id="@item.StoId">-</a>
+                        <a class="btn btn-warning" type="submit"  asp-controller="Radnik" asp-action="dugme_izmeni" asp-route-id="@item.StoId">izmeni</a></td>
+                   </tr>
+              }
+          }
+        
+      </tbody>
+    </table>
+
+    <div class="row">
+    <a class="btn btn-info" asp-controller="Radnik" asp-action="Index" >Nazad</a>
+</div>
+</div>
+
+

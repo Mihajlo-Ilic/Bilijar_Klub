@@ -1,0 +1,166 @@
+﻿@model IEnumerable<Get_Projekat.Models.ViewModels.LicniTermini>
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+        Layout = "_UserLayout";
+}
+
+<div class="container">
+
+
+
+    <div class="container2 " style="background:rgba(0,0,0,0.9);border-radius:10px">
+        <table id ="tabela" class="table text-white">
+              <thead>
+                <tr>
+                  <th scope="col">id_stola</th>
+                  <th scope="col">sto</th>
+                  <th scope="col">datum</th>
+                  <th scope="col">od</th>
+                  <th scope="col">do</th>
+                </tr>
+              </thead>
+          <tbody>
+
+              @foreach (var item in Model)
+              {
+                    <tr id=@item.TerminId>
+                      <td >@item.StoId</td>
+                      <td >@item.StoName</td>
+                      <td >@item.Date</td>
+                      <td >@item.Start</td>
+                      <td >@item.End</td>
+                      <td><a class="btn btn-danger" type="submit"  asp-controller="Musterija" asp-action="brisiTermin" asp-route-id="@item.TerminId">-</a>
+                            <a class="btn btn-warning" type="submit"  asp-controller="Musterija" asp-action="izmeniTermin" asp-route-id="@item.TerminId">izmeni</a></td>
+                </tr>
+              }
+        
+          </tbody>
+        </table>
+    </div>
+
+    <div class="row">
+        <a class="btn btn-info" asp-action="Index">Nazad</a>
+    </div>
+
+</div>
+
+
+<script src="~/lib/microsoft/signalr/dist/browser/signalr.js"></script>
+
+<script>
+    "use strict";
+
+
+var connection = new signalR.HubConnectionBuilder().withUrl("/Hub").build();
+
+
+connection.start();
+
+connection.on("NovTerminAdmin", function (message) {
+
+    console.log(message)
+
+
+    var t = document.getElementById('tabela').getElementsByTagName('tbody')[0];
+    var red = t.insertRow(0);
+    red.id = message.terminId;
+
+    var c0 = red.insertCell(0);
+    c0.appendChild( document.createTextNode(message.stoId));
+
+    var c1 = red.insertCell(1);
+    c1.appendChild( document.createTextNode(message.stoName));
+
+    var c2 = red.insertCell(2);
+    c2.appendChild( document.createTextNode(message.date));
+
+    var c3 = red.insertCell(3);
+    c3.appendChild( document.createTextNode(message.start));
+
+    var c4 = red.insertCell(4);
+    c4.appendChild( document.createTextNode(message.end));
+
+    var c8 = red.insertCell(5);
+
+    var dugme = document.createElement("a");
+    dugme.textContent = "izmeni";
+    dugme.classList.add("btn");
+    dugme.classList.add("btn-warning");
+
+    var p1 = '@Url.Action("izmeniTermin","Musterija")';
+    var p2 = message.terminId;
+    dugme.href = p1 + '/' + p2;
+
+
+    var dugme2 = document.createElement("a");
+    dugme2.textContent = "-";
+    dugme2.classList.add("btn");
+    dugme2.classList.add("btn-danger");
+
+    var p11 = '@Url.Action("brisiTermin","Musterija")';
+    var p22 = message.terminId;
+    dugme2.href = p11 + '/' + p22;
+   
+
+    
+    c8.appendChild(dugme2);
+    c8.appendChild(dugme);
+});
+
+connection.on("IzmeniTerminAdmin", function (message) {
+
+    console.log(message)
+
+
+    var t = document.getElementById('tabela').getElementsByTagName('tbody')[0];
+
+    var red = document.getElementById(message.terminId);
+
+    if(red != null){
+
+        var c0 = red.cells[0];
+        c0.innerHTML  = '';
+        c0.appendChild( document.createTextNode(message.stoId));
+
+        var c1 = red.cells[1];
+        c1.innerHTML  = '';
+        c1.appendChild( document.createTextNode(message.stoName));
+
+        var c2 = red.cells[2];
+        c2.innerHTML  = '';
+        c2.appendChild( document.createTextNode(message.date));
+
+        var c3 = red.cells[3];
+        c3.innerHTML  = '';
+        c3.appendChild( document.createTextNode(message.start));
+
+        var c4 = red.cells[4];
+        c4.innerHTML  = '';
+        c4.appendChild( document.createTextNode(message.end));
+
+
+    }
+
+ 
+});
+
+connection.on("IzbrisiTerminAdmin", function (id) {
+
+    console.log(id)
+
+
+    var t = document.getElementById('tabela').getElementsByTagName('tbody')[0];
+
+    var red = document.getElementById(id);
+
+    if(red != null)
+        red.remove();
+   
+
+ 
+});
+
+
+</script>

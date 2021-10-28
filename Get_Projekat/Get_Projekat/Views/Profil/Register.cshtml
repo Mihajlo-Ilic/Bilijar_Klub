@@ -1,0 +1,73 @@
+﻿@model Get_Projekat.Models.ViewModels.RegisterViewModel
+
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+<div class="container h-100">
+<div class="row h-100 justify-content-center align-items-center" style="margin-top:15%;background:bisque;">
+    <div class="col-10 col-md-8 col-lg-6" style="background:rgba(0,0,0,0.9);border-radius:10px">
+        <section id="register">
+            <form id="profil" class="justify-content-center text-white" method="post" asp-action="Register" asp-controller="Profil">
+                <h4>Register</h4>
+
+                <div asp-validation-summary="All" class="text-danger"></div>
+
+                <div class="form-group row">
+                    <label class="col-md-2" asp-for="Username"></label>
+                    <div class="col-md-10">
+                        <input asp-for="Username" class="form-control" />
+                        <span asp-validation-for="Username" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label class="col-md-2" asp-for="Name"></label>
+                    <div class="col-md-10">
+                        <input asp-for="Name" class="form-control" />
+                        <span asp-validation-for="Name" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label class="col-md-2" asp-for="Surname"></label>
+                    <div class="col-md-10">
+                        <input asp-for="Surname" class="form-control" />
+                        <span asp-validation-for="Surname" class="text-danger"></span>
+                    </div>
+                </div>
+
+
+                <div class="form-group row">
+                    <label class="col-md-2" asp-for="Password"></label>
+                    <div class="col-md-10">
+                        <input asp-for="Password" class="form-control" />
+                        <span asp-validation-for="Password" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label class="col-md-2" asp-for="ConfirmPassword"></label>
+                    <div class="col-md-10">
+                        <input asp-for="ConfirmPassword" class="form-control" />
+                        <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+                    </div>
+                </div>
+
+
+                <div class="form-group row">
+                    <div class="col-md-10 offset-md-2">
+                        <input type="submit" value="Registruj se" class="btn btn-success" />
+                        <a asp-action="Login">Nazad</a>
+                    </div>
+                </div>
+
+                
+
+            </form>
+        </section>
+    </div>
+</div>
+</div>

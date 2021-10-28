@@ -1,0 +1,58 @@
+﻿@model Get_Projekat.Models.Sto
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    Layout = "_ClientLayout";
+}
+
+<div class="row justify-content-center" style="margin-top:7%">
+    <div class="col-md-5 text-white" style="background:rgba(0,0,0,0.9);border-radius:10px">
+        <section id="login_forma">
+            <form id="profil" method="post" asp-action="izmeni_sto" asp-controller="Radnik">
+                <h4>Izmena Stola</h4>
+
+
+                <div class="form-group row">
+                    <label class="col-md-2" >Id</label>
+                    <div class="col-md-10">
+                        <input asp-for="StoId" type="text" class="form-control" value="@Model.StoId" readonly/>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label class="col-md-2" asp-for="Name"></label>
+                    <div class="col-md-10">
+                        <input type="text" asp-for="Name" class="form-control" value="@Model.Name"/>
+                        <span asp-validation-for="Name" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label class="col-md-2" asp-for="Description"></label>
+                    <div class="col-md-10">
+                        <input type="text" asp-for="Description" class="form-control" value="@Model.Description" />
+                        <span asp-validation-for="Description" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label class="col-md-2" asp-for="cena"></label>
+                    <div class="col-md-10">
+                        <input type="number" asp-for="cena" class="form-control" value="@Model.cena"/>
+                        <span asp-validation-for="cena" class="text-danger"></span>
+                    </div>
+                </div>
+
+
+                <div class="form-group row">
+                    <div class="col-md-10 offset-md-2">
+                        <input type="submit" value="Izmeni Podatke o stolu" class="btn btn-success" />
+                        <a asp-action="Index">Nazad</a>
+                    </div>
+                </div>          
+
+            </form>
+        </section>
+    </div>
+</div>

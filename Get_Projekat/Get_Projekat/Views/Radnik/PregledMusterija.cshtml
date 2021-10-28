@@ -1,0 +1,59 @@
+﻿@model IEnumerable<Get_Projekat.Models.ViewModels.KorisnikPregled> 
+
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    Layout = "_ClientLayout";
+}
+
+
+
+<div class="container" style="background:rgba(0,0,0,0.9);border-radius:10px">
+
+    <div class="row">
+    <a class="btn btn-info" asp-action="DodajKorisnika" >Dodaj Novi+</a>
+</div>
+
+    <table class="table text-white">
+          <thead>
+            <tr>
+              <th scope="col">username</th>
+              <th scope="col">ime</th>
+              <th scope="col">prezime</th>
+              <th scope="col">tip</th>
+            </tr>
+          </thead>
+      <tbody>
+        
+         @if(Model.Any()){
+              foreach (var item in Model)
+              {
+                   <tr>
+                      <td>@item.username</td>
+                      <td>@item.name</td>
+                      <td>@item.surname</td>
+                      <td>@item.type</td>
+                      <td><a class="btn btn-danger" type="submit"  asp-controller="Radnik" asp-action="BrisiKorisnika" asp-route-id="@item.Id">-</a>
+                        <a class="btn btn-warning" type="submit"  asp-controller="Radnik" asp-action="dugme_izmeniK" asp-route-id="@item.Id">izmeni</a>
+                        </td>
+                      
+                        @if(@item.type == "radnik") {
+                            <td><image src=@Url.Content("~/Slike/wrench.png")></image></td>
+                        }
+                        else {
+                            <td><image src=@Url.Content("~/Slike/user.png")></image></td>
+                        }
+
+                    </tr>
+              }
+          }
+
+      </tbody>
+    </table>
+
+    <div class="row">
+    <a class="btn btn-info" asp-action="Index" >Nazad</a>
+</div>
+</div>
+

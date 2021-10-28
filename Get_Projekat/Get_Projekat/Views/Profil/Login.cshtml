@@ -1,0 +1,54 @@
+﻿@model Get_Projekat.Models.ViewModels.LoginViewModel
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    
+}
+
+<div class="container min-vh-100 ">
+<div class="row h-100 justify-content-center" style="margin-top:15%;">
+    <div class="col-10 col-md-8 col-lg-6" style="background:rgba(0,0,0,0.9);border-radius:10px">
+        <section id="login_forma">
+            <form id="profil" class="justify-content-center text-white" method="post" asp-action="Login" asp-controller="Profil">
+                <h4>Login</h4>
+               <div asp-validation-summary="All" class="text-danger"></div>
+                <div class="form-group row">
+                    <label class="col-md-2" asp-for="username"></label>
+                    <div class="col-md-10">
+                        <input asp-for="username" class="form-control" />
+                        <span asp-validation-for="username" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label class="col-md-2" asp-for="password"></label>
+                    <div class="col-md-10">
+                        <input asp-for="password" class="form-control" />
+                        <span asp-validation-for="password" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <div class="col-md-10 offset-md-2 checkbox">
+                        <label asp-for="rememberMe" class="pr-4 p1-0">
+                            <input asp-for="rememberMe" />
+                        </label>
+                        Zapamti me?
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <div class="col-md-10 offset-md-2">
+                        <input type="submit" value="Log in" class="btn btn-success" />
+                        <a asp-action="Register">registruj se</a>
+                    </div>
+                </div>
+
+                
+
+            </form>
+        </section>
+    </div>
+</div>
+</div>

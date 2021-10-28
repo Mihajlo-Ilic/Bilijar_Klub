@@ -1,0 +1,63 @@
+﻿@model Get_Projekat.Models.ViewModels.NovTermin
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+        Layout = "_UserLayout";
+}
+
+<div class="row justify-content-center" style="margin-top:7%;">
+    <div class="col-md-5 text-white" style="background:rgba(0,0,0,0.9);border-radius:10px">
+        <section id="login_forma">
+            <form id="profil" method="post" asp-action="NovTermin" asp-controller="Musterija">
+                <h4>Rezervacija termina</h4>
+                <div asp-validation-summary="All" class="text-danger"></div>
+                <div class="form-group row">
+                    <label class="col-md-2" asp-for="StoId"></label>
+                    <div class="col-md-10">
+                         @Html.DropDownListFor(m => m.StoId ,@ViewBag.stolovi as SelectList)
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label class="col-md-2" asp-for="Date"></label>
+                    <div class="col-md-10">
+                        <input type="date" asp-for="Date" class="form-control" />
+                        <span asp-validation-for="Date" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label class="col-md-2" asp-for="Start"></label>
+                    <div class="col-md-10">
+                        <input type="time" asp-for="Start" class="form-control" />
+                        <span asp-validation-for="Start" class="text-danger"></span>
+                    </div>
+                </div>
+
+
+                <div class="form-group row">
+                    <label class="col-md-2" asp-for="End"></label>
+                    <div class="col-md-10">
+                        <input type="time" asp-for="End" class="form-control" />
+                        <span asp-validation-for="End" class="text-danger"></span>
+                    </div>
+                </div>
+
+
+                <div class="form-group row">
+                    <div class="col-md-10 offset-md-2">
+                        <input id="dugme" type="submit" value="Rezervisi Termin" class="btn btn-success" />
+                        <a asp-action="Index">Nazad</a>
+                    </div>
+                </div>
+
+                
+
+            </form>
+        </section>
+    </div>
+</div>
+
+<script src="~/js/signalr/dist/browser/signalr.js"></script>
+<script src="~/js/DodajTerminMusterija.js"></script>
